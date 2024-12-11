@@ -5,13 +5,12 @@ export default function Logo() {
   return (
     <div className="flex items-center gap-1">
       <Image
-        className="w-8 h-auto"
-        src="/images/dropbox_icon.png"
-        alt="dropbox icon"
+        className="w-20 h-auto"
+        src="/imgs/tmdbflix_logo.png"
+        alt="TMDBFLIX logo"
         width={50}
         height={30}
       />
-      <h1 className="text-xl font-bold">Minibox</h1>
     </div>
   );
 }
