@@ -18,7 +18,9 @@ export default function MovieCardList() {
     <div className="grid gap-1 grid-cols-3 md:grid-cols-4  w-full h-full p-4">
       {searchMoviesQuery.isLoading && <Spinner />}
       {searchMoviesQuery.data &&
-        searchMoviesQuery.data.map((movie) => <MovieCard movie={movie} />)}
+        searchMoviesQuery.data.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
     </div>
   );
 }

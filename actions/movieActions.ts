@@ -18,3 +18,14 @@ export async function searchMovies(search = "") {
   handleError(error);
   return data;
 }
+
+export async function getMovie(id) {
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("movie")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle(); // null 일수도 있다.
+  handleError(error);
+  return data;
+}
