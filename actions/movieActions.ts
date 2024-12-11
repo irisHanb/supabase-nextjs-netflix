@@ -9,14 +9,31 @@ function handleError(error) {
   }
 }
 
-export async function searchMovies(search = "") {
+export async function searchMovies({ search = "", page, pageSize }) {
   const supabase = await createServerSupabaseClient();
-  const { data, error } = await supabase
+  const { data, count, error } = await supabase
     .from("movie")
     .select("*")
-    .like("title", `%${search}%`);
-  handleError(error);
-  return data;
+    .like("title", `%${search}%`)
+    .range((page - 1) * pageSize, page * pageSize - 1); // 시작 값, 끝나는 값
+
+  const hasNextPage = count > page * pageSize;
+
+  if (error) {
+    return {
+      data: [],
+      count: 0,
+      page: null,
+      pageSize: null,
+      error,
+    };
+  }
+  return {
+    data,
+    page,
+    pageSize,
+    hasNextPage,
+  };
 }
 
 export async function getMovie(id) {
