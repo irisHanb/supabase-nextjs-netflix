@@ -9,3 +9,4 @@
 - [recoil](https://recoiljs.org/ko/)
 - [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer)
   - 무한 스크롤
+- 반응형
